@@ -12,11 +12,12 @@ class UserList extends React.Component {
             browserHistory.push('/chatbox');
         }
   render() {
-    console.log(this.props); // right know we have userlist on this.props
+    console.log(this.props);
+    // TODO: create child component to display this
     return (
       <div>
         <h1>This page display user list</h1>
-        {this.props.state.courses.map(user =>
+        {this.props.state.userList.map(user =>
         <li key={user.id}>{user.id} - {user.firstName}</li>
       )}
         <button onClick={this.changeToChatBox}> click me to change state</button>
