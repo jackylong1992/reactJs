@@ -1,16 +1,24 @@
 const userList = [
     {
-      id: '1111',
-      firstName: 'Jacky',
+        uid : 1111,
+        displayName: "Long Nguyen"
     },
     {
-        id: '2222',
-        firstName: 'Loka',
-      },
-      {
-        id: '333',
-        firstName: 'Danny',
-      }
+        uid : 2222,
+        displayName: "Loka Nguyen"
+    },
+    {
+        uid : 3333,
+        displayName: "Jacob Vu"
+    },
+    {
+        uid : 4444,
+        displayName: "Danny Hoang"
+    },
+    {
+        uid : 5555,
+        displayName: "Paul"
+    }
   ];
 
 export default userList;
