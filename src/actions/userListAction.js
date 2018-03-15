@@ -3,5 +3,5 @@ import * as types from './actionTypes';
 
 
 export function updateUserList() {
-    return {type: types.UPDATE_USER_LIST, payload: mockUserList};
+    return {type: types.UPDATE_USER_LIST, mockUserList};
   }

@@ -13,10 +13,7 @@ export default function courseReducer(state = initialState.courses, action) {
       ];
 
     case types.UPDATE_USER_LIST:
-      return [
-        ...state,
-        Object.assign({}, action.payload)
-      ];
+      return action.mockUserList;
 
     case types.UPDATE_COURSE_SUCCESS:
       return [
