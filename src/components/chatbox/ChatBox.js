@@ -11,8 +11,9 @@ class ChatBox extends React.Component {
         this.changeToChatBox = this.changeToUserList.bind(this);
         
         this.sendMessage = this.sendMessage.bind(this);
-        console.log('update message', this.props);
-        this.props.actions.watchChatBox();
+        // console.log('update message', this.props);
+        // this.props.actions.watchChatBox();
+        // accquire client
     }
 
     componentWillMount() {

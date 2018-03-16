@@ -36,7 +36,7 @@ import firebase from '../myfilebase'
         });
         return promise;
     }
-
+    // TODO: implement unwatchData to avoid overwrite watch
     static watchData (link, cb) {
         var starCountRef = firebase.database().ref(link);
         return starCountRef.on('value', function(snapshot) {
