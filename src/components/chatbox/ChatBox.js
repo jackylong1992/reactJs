@@ -8,7 +8,7 @@ class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToChatBox = this.changeToUserList.bind(this);
-        console.log('update message');
+        console.log('update message', this.props);
         this.props.actions.watchChatBox();
     }
 
@@ -29,9 +29,16 @@ class ChatBox extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>This page display chat box</h1>
-
+            <div id="messageSpace">
+                <div id='chatContent'>
+                {this.props.state.map((message, index) =>
+                <li key={index}>{message.text}</li>
+                )}
+                </div>
+                <input id='inputBox' type="text"/>
+                <button onclick=''>Send</button>
+                <button onclick=''>Release client</button>
+                
             </div>
         );
     }
@@ -39,7 +46,7 @@ class ChatBox extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        state: state.userList
+        state: state.chatBox
     };
 }
 

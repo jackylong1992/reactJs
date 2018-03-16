@@ -26,14 +26,15 @@ class UserList extends React.Component {
     }
 
     changeToChatBox () {
-        browserHistory.push('/chatbox');
+        browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
+        console.log("change link", this.props);
     }
 
     render() {
         return (
             <div>
                 <h1>This page display user list</h1>
-                {this.props.state.map(user =>
+                {this.props.state.userList.map(user =>
                 <li key={user.id} onClick={this.changeToChatBox}>{user.id} - {user.name}</li>
                 )}
             </div>
@@ -43,7 +44,7 @@ class UserList extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        state: state.userList
+        state: state
     };
 }
 
