@@ -12,6 +12,8 @@ class UserList extends React.Component {
         this.props.actions.updateUserList();
         // console.log('watch user list');
         this.props.actions.watchUserList();
+        
+        this.props.actions.watchMyInfo();
     }
 
     componentWillMount() {

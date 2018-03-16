@@ -28,6 +28,7 @@ class ChatBox extends React.Component {
 
     changeToUserList () {
         browserHistory.push('/userList');
+        // TODO: release client information in here
     }
 
     sendMessage () {
@@ -46,8 +47,7 @@ class ChatBox extends React.Component {
                 </div>
                 <input id='inputBox' type="text"/>
                 <button onClick={this.sendMessage}>Send</button>
-                <button>Release client</button>
-                
+                <button onClick={this.changeToUserList}>Release client</button>
             </div>
         );
     }
