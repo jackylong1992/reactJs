@@ -17,6 +17,7 @@ function loadUserList(userList) {
             return mockUserList.readData('/users')
             .then(userList => {
                 console.log("userList", userListModel.processData(userList));
+                // TODO: display user information here
                 dispatch(loadUserList(userListModel.processData(userList)));
             })
             .catch(error => {
@@ -42,7 +43,8 @@ function loadUserList(userList) {
                 // dispatch(loadUserList(userListModel.processData(userList)));
                 // TODO: implement action, change state in here, route still have warning here
                 // QUESTION: how the state is reander in this case
-                browserHistory.push('/')
+                // need to verify my info change
+                browserHistory.push('/');
             });
         };
     }
