@@ -10,7 +10,8 @@ class App extends React.Component {
         super(props, context);
         console.log('update user list');
         this.props.actions.updateUserList();
-        }
+        this.props.actions.watchUserList();
+    }
 
   render() {
       

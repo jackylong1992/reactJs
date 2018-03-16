@@ -4,7 +4,11 @@ import initialState from './initialState';
 export default function userListReducer(state = initialState.userList, action) {
   switch (action.type) {
     case types.UPDATE_USER_LIST:
-      return action.mockUserList;
+      return action.userList;
+
+    case types.BEGIN_FIREBASE:
+        console.log("begin firebase");
+      return state;
 
     default:
       return state;
