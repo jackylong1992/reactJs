@@ -7,8 +7,8 @@ import {bindActionCreators} from 'redux';
 class Login extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.changeToUserList = this.changeToUserList.bind(this);
-
+        this.changeToNextState = this.changeToNextState.bind(this);
+        this.onlineAccountLogin = this.onlineAccountLogin.bind(this);
     }
 
     componentWillMount() {
@@ -22,16 +22,29 @@ class Login extends React.Component {
         // console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
-    changeToUserList () {
-        browserHistory.push('/userList');
+    changeToNextState (state) {
+        browserHistory.push(state);
         console.log("change link", this.props);
+    }
+
+    onlineAccountLogin () {
+        var isFirstLogin = true;
+        // authentication process in here, should return promise
+        // check user exist in system
+        // (if new user -> require extra information) change to User info page or change to User List page
+        if (isFirstLogin) {
+            this.changeToNextState('/accountInfo');
+        } else {
+            this.changeToNextState('/userList');
+        }
     }
 
     render() {
         return (
             <div>
                 <h1>This page display user LOGIN</h1>
-                <button onClick={this.changeToUserList}>Login</button>
+                <button onClick={this.onlineAccountLogin}>Login by Google Account</button>
+                <button onClick={this.onlineAccountLogin}>Login by Facebook Account</button>
             </div>
         );
     }
