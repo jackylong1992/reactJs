@@ -8,9 +8,8 @@ import * as usrListAction from '../actions/userListAction';
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
-        console.log('update user list');
-        this.props.actions.updateUserList();
-        this.props.actions.watchUserList();
+        
+
     }
 
   render() {

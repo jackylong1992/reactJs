@@ -1,28 +1,34 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import {bindActionCreators} from 'redux';
+import * as usrListAction from '../../actions/userListAction';
 
 class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToChatBox = this.changeToChatBox.bind(this);
-        console.log(this.props.state);
+        // console.log('update user list');
+        this.props.actions.updateUserList();
+        // console.log('watch user list');
+        this.props.actions.watchUserList();
     }
 
-     componentWillMount() {
-        console.log('Component WILL MOUNT!');
-     }
-     componentDidMount() {
-        console.log('Component DID MOUNT!');
-     }
+    componentWillMount() {
+        // console.log('Component WILL MOUNT!');
+    }
+    componentDidMount() {
+        // console.log('Component DID MOUNT!');
+    }
 
-     componentWillReceiveProps(newProps) {    
+    componentWillReceiveProps(newProps) {
         console.log('Component WILL RECIEVE PROPS!', newProps);
-     }
+    }
 
-     changeToChatBox () {
+    changeToChatBox () {
         browserHistory.push('/chatbox');
     }
+
     render() {
         return (
             <div>
@@ -40,5 +46,11 @@ function mapStateToProps(state, ownProps) {
         state: state.userList
     };
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+      actions: bindActionCreators(usrListAction, dispatch)
+    };
+}
   
-export default connect(mapStateToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
