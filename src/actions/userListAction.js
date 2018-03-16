@@ -1,6 +1,7 @@
 import mockUserList from '../api/mockUserList';
 import * as types from './actionTypes';
 import userListModel from '../model/userList'
+import referenceMapping from '../api/referenceMappingApi'
 
 function beginAjaxCall () {
     return {type: types.BEGIN_FIREBASE};
@@ -27,6 +28,7 @@ function loadUserList(userList) {
         return function(dispatch) {
             mockUserList.watchData ('/users', (userList) => {
                 console.log("data change");
+                referenceMapping.mappingData(userList);
                 dispatch(loadUserList(userListModel.processData(userList)));
             });
         };

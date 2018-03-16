@@ -22,7 +22,7 @@ class UserList extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('Component WILL RECIEVE PROPS!', newProps);
+        // console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
     changeToChatBox () {
