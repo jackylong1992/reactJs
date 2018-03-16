@@ -3,11 +3,14 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as ChatBoxAction from '../../actions/chatBoxAction';
+import $ from 'jquery';
 
 class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToChatBox = this.changeToUserList.bind(this);
+        
+        this.sendMessage = this.sendMessage.bind(this);
         console.log('update message', this.props);
         this.props.actions.watchChatBox();
     }
@@ -27,6 +30,12 @@ class ChatBox extends React.Component {
         browserHistory.push('/userList');
     }
 
+    sendMessage () {
+        console.log("sendMessage");
+        var message = $('#messageSpace input').val();
+        this.props.actions.sendChatBox("1111", message);
+    }
+
     render() {
         return (
             <div id="messageSpace">
@@ -36,8 +45,8 @@ class ChatBox extends React.Component {
                 )}
                 </div>
                 <input id='inputBox' type="text"/>
-                <button onclick=''>Send</button>
-                <button onclick=''>Release client</button>
+                <button onClick={this.sendMessage}>Send</button>
+                <button>Release client</button>
                 
             </div>
         );

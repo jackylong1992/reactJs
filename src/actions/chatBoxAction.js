@@ -14,14 +14,10 @@ export function  watchChatBox() {
     return function(dispatch) {
         dispatch(beginAjaxCall());
         // return mockChatBox.watchData('/channel/' + referenceMapping.getReferenceFromId(g_user.clientId))
-        return mockChatBox.watchData('/channel/' + referenceMapping.getReferenceFromId())
-        .then(chatBox => {
+        return mockChatBox.watchData( (chatBox) => {
             console.log("message list", chatBoxModel.processData(chatBox));
             dispatch(loadChatBox(chatBoxModel.processData(chatBox)));
         })
-        .catch(error => {
-            throw(error);
-        });
     };
 }
 
