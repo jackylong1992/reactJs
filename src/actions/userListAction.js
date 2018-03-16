@@ -1,7 +1,8 @@
 import mockUserList from '../api/mockUserList';
 import * as types from './actionTypes';
-import userListModel from '../model/userList'
-import referenceMapping from '../api/referenceMappingApi'
+import userListModel from '../model/userList';
+import referenceMapping from '../api/referenceMappingApi';
+import {browserHistory} from 'react-router';
 
 function beginAjaxCall () {
     return {type: types.BEGIN_FIREBASE};
@@ -39,7 +40,9 @@ function loadUserList(userList) {
             mockUserList.watchData ('/users/-L7TkjO6DilzK06SX9Mf', (myInfo) => {
                 console.log("my info change", myInfo);
                 // dispatch(loadUserList(userListModel.processData(userList)));
-                // TODO: implement action
+                // TODO: implement action, change state in here, route still have warning here
+                // QUESTION: how the state is reander in this case
+                browserHistory.push('/')
             });
         };
     }
