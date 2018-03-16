@@ -7,10 +7,10 @@ import CoursesPage from './components/course/CoursesPage';
 import UserList from './components/userlist/UserList';
 import ChatBox from './components/chatbox/ChatBox';
 import ManageCoursePage from './components/course/ManageCoursePage'; //eslint-disable-line import/no-named-as-default
-
+import Login from './components/login/Login'
 export default (
   <Route path="/" component={App}>
-    <IndexRoute component={UserList} />
+    <IndexRoute component={Login} />
     <Route path="courses" component={CoursesPage} />
     <Route path="course" component={ManageCoursePage} />
     <Route path="course/:id" component={ManageCoursePage} />

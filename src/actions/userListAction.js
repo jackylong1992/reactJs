@@ -44,7 +44,7 @@ function loadUserList(userList) {
                 // TODO: implement action, change state in here, route still have warning here
                 // QUESTION: how the state is reander in this case
                 // need to verify my info change
-                browserHistory.push('/');
+                browserHistory.push('/userList');
             });
         };
     }
