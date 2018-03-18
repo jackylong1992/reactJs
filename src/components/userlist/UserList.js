@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as usrListAction from '../../actions/userListAction';
 import userInfoApi from '../../api/userInfoApi';
+import UserCard from './UserCard';
 class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -42,20 +43,16 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
-                <h1>This page display user list</h1>
-                <div className={"panel panel-default"}>
+                <h1>Online Users</h1>
                 {this.props.state.userList.map(user => {
                     if (!user.isFree) {
-                        return <div className={"panel-danger"}><div key={user.id} id={user.id} className={'isBusy panel-heading'} onClick={this.cannotClickMe}>{user.id} - {user.name}</div></div>;
+                        return <UserCard key={user.id} name={user.name} isBusy={true} onClick={this.cannotClickMe}/>;
                     } else {
-                        return <div key={user.id} id={user.id} className={'panel-heading'} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</div>;
+                        return <UserCard key={user.id} name={user.name} isBusy={false} onClick={this.changeToChatBox.bind(this, user.id)}/>;
                     }
-                    
                 }
-                
                 )}
                 </div>
-            </div>
         );
     }
 }
