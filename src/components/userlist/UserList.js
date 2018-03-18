@@ -8,6 +8,7 @@ class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToChatBox = this.changeToChatBox.bind(this);
+        console.log("this is usrList page first data = ", this.props);
         // console.log('update user list');
         this.props.actions.updateUserList();
         // console.log('watch user list');
@@ -24,7 +25,7 @@ class UserList extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        // console.log('Component WILL RECIEVE PROPS!', newProps);
+        console.log('userList receive new props', newProps);
     }
 
     changeToChatBox () {

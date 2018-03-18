@@ -2,6 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
+import $ from 'jquery';
+import loginApi from '../../api/loginApi';
 // import * as usrListAction from '../../actions/userListAction';
 
 class Login extends React.Component {
@@ -9,6 +11,7 @@ class Login extends React.Component {
         super(props, context);
         this.changeToNextState = this.changeToNextState.bind(this);
         this.onlineAccountLogin = this.onlineAccountLogin.bind(this);
+        console.log("this is log in page first data = ", this.props);
     }
 
     componentWillMount() {
@@ -23,8 +26,17 @@ class Login extends React.Component {
     }
 
     changeToNextState (state) {
-        browserHistory.push(state);
-        console.log("change link", this.props);
+        // browserHistory.push({pathname : state, state: {userId : $('#userId').val()}});
+        //console.log("change link", this.props);
+        var userId = $('#userId').val();
+        loginApi.verifyUser(userId)
+        .then((isExist)=> {
+            if (isExist) {
+                browserHistory.push('/userList');
+            } else {
+                browserHistory.push({pathname:'/accountInfo', state: {id: userId}});
+            }
+        })
     }
 
     onlineAccountLogin () {
@@ -45,6 +57,7 @@ class Login extends React.Component {
                 <h1>This page display user LOGIN</h1>
                 <button onClick={this.onlineAccountLogin}>Login by Google Account</button>
                 <button onClick={this.onlineAccountLogin}>Login by Facebook Account</button>
+                <label>User Id : </label> <input id="userId" type="text"></input>
             </div>
         );
     }
@@ -58,7 +71,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-    //   actions: bindActionCreators(usrListAction, dispatch)
+    //   actions: bindActionCreators(loginAction, dispatch)
     };
 }
   
