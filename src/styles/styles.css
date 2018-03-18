@@ -16,7 +16,8 @@ nav {
 }
 
 #chatContent {
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .fromMe {
@@ -29,8 +30,9 @@ nav {
 
 .main-container {
     border: solid 2px black;
-    max-width: 750px;
-    min-height: 1334px;
+    width: 750px;
+    height: 1134px;
+    position: absolute;
 }
 
 .chatBar {
@@ -69,7 +71,11 @@ nav {
     position: relative;
     bottom: 12px;
 }
-
+@media only screen and (max-width: 600px) {
+    .chatBar span:nth-child(2) {
+        display: none;
+    }
+}
 .isSent {
     width: 60%;
     float: right;
@@ -78,4 +84,20 @@ nav {
 .isReceive {
     width: 60%;
     float: left;
+}
+
+#messageSpace input {
+    width: 80%;
+    display: inline-block;
+}
+
+#messageSpace button {
+    width: 19%;
+    margin-left:5px;
+}
+
+#inputBar {
+    position: absolute;
+    width: 96%;
+    bottom: 30px;
 }

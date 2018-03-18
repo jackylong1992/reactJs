@@ -7,6 +7,7 @@ import $ from 'jquery';
 import userInfoApi from '../../api/userInfoApi';
 import ChatBar from './ChatBar';
 import ChatMessage from './ChatMessage';
+import InputBar from './InputBar';
 class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -46,9 +47,10 @@ class ChatBox extends React.Component {
     }
 
     sendMessage () {
-        //console.log("sendMessage");
+        console.log("sendMessage");
         var message = $('#messageSpace input').val();
         this.props.actions.sendChatBox(message);
+        $('#messageSpace input').val("");
     }
 
     render() {
@@ -60,8 +62,7 @@ class ChatBox extends React.Component {
                 <ChatMessage key={index} name={message.text} isSent={message.from == userInfoApi.myInfo.id}/>
                 )}
                 </div>
-                <input id='inputBox' type="text"/>
-                <button onClick={this.sendMessage}>Send</button>
+                <InputBar onClick={this.sendMessage}/>
             </div>
         );
     }
