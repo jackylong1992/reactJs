@@ -35,13 +35,17 @@ class UserList extends React.Component {
         // //console.log("change link", this.props);
     }
 
+    cannotClickMe() {
+        console.log('I am busy, cannot chat to me');
+    }
+
     render() {
         return (
             <div>
                 <h1>This page display user list</h1>
                 {this.props.state.userList.map(user => {
                     if (!user.isFree) {
-                        return <li key={user.id} id={user.id} className={'isBusy'} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</li>;
+                        return <li key={user.id} id={user.id} className={'isBusy'} onClick={this.cannotClickMe}>{user.id} - {user.name}</li>;
                     } else {
                         return <li key={user.id} id={user.id} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</li>;
                     }
