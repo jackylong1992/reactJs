@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as ChatBoxAction from '../../actions/chatBoxAction';
 import $ from 'jquery';
 import userInfoApi from '../../api/userInfoApi';
+import ChatBar from './ChatBar';
 
 class ChatBox extends React.Component {
     constructor(props, context) {
@@ -39,6 +40,7 @@ class ChatBox extends React.Component {
     }
 
     changeToUserList () {
+        console.log("release client")
         this.props.actions.releaseClient();
         // TODO: release client information in here
     }
@@ -52,6 +54,7 @@ class ChatBox extends React.Component {
     render() {
         return (
             <div id="messageSpace">
+                <ChatBar name={"Person you chat with"} onClick={this.changeToUserList.bind(this)}/>
                 <div id='chatContent'>
                 {this.props.state.map((message, index) =>
                 <li key={index}>{message.text}</li>
@@ -59,7 +62,6 @@ class ChatBox extends React.Component {
                 </div>
                 <input id='inputBox' type="text"/>
                 <button onClick={this.sendMessage}>Send</button>
-                <button onClick={this.changeToUserList}>Release client</button>
             </div>
         );
     }

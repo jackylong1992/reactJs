@@ -36,3 +36,40 @@ nav {
     max-width: 750px;
     min-height: 1334px;
 }
+
+.chatBar {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.chatBar div:first-child{
+    color: red;
+    display: inline-block;
+}
+
+.chatBar div:last-child{
+    color: blue;
+    position: absolute;
+    text-align: center;
+    display: block;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+}
+
+.chatBar div:last-child div {
+    font-size:30px;
+    padding-top: 10px;
+}
+
+.chatBar span:first-child {
+    font-size: 50px;
+    z-index: 10;
+}
+
+.chatBar span:nth-child(2) {
+    font-size: 30px;
+    position: relative;
+    bottom: 12px;
+}
