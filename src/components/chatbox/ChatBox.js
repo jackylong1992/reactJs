@@ -6,7 +6,7 @@ import * as ChatBoxAction from '../../actions/chatBoxAction';
 import $ from 'jquery';
 import userInfoApi from '../../api/userInfoApi';
 import ChatBar from './ChatBar';
-
+import ChatMessage from './ChatMessage';
 class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -40,7 +40,7 @@ class ChatBox extends React.Component {
     }
 
     changeToUserList () {
-        console.log("release client")
+        console.log("release client");
         this.props.actions.releaseClient();
         // TODO: release client information in here
     }
@@ -54,10 +54,10 @@ class ChatBox extends React.Component {
     render() {
         return (
             <div id="messageSpace">
-                <ChatBar name={"Person you chat with"} onClick={this.changeToUserList.bind(this)}/>
+                {<ChatBar name={"Person you chat with"} onClick={this.changeToUserList.bind(this)}/>}
                 <div id='chatContent'>
                 {this.props.state.map((message, index) =>
-                <li key={index}>{message.text}</li>
+                <ChatMessage key={index} name={message.text} isSent={message.from == userInfoApi.myInfo.id}/>
                 )}
                 </div>
                 <input id='inputBox' type="text"/>
