@@ -35,7 +35,7 @@ class AccountInfo extends React.Component {
         var user = {};
         user.uid = this.props.location.state.id;
         user.displayName = $('#nickName').val();
-        user.birthday = $('#birthDay').val();
+        user.birthday = $('#age').val();
         user.gender = $('#gender').val();
         userInfoApi.updateMyInfo({id: user.uid, name: user.displayName, birthday:user.birthday, gender: user.gender});
         loginApi.addUser(user);
@@ -45,15 +45,16 @@ class AccountInfo extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1>This page display user account info</h1>
-                <label >User Nick Name</label>
-                <input id="nickName" type="text"></input><br/>
-                <label>Age</label>
-                <input id="birthDay" type="number"></input><br/>
-                <label>Gender</label>
-                <input id="gender" type="text"></input><br/>
-                <button onClick={this.changeState}>Submit</button>
+            <div id="accountInfo">
+                <h1>Please give me more information</h1>
+                <label for="inputlg">Nick Name</label>
+                <input className="form-control input-lg" id="nickName" type="text"/>
+                <label for="inputlg">Age</label>
+                <input className="form-control input-lg" id="age" type="number"/>
+                <label for="inputlg">Gender</label>
+                <input className="form-control input-lg" id="gender" type="text"/>
+                
+                <button className="btn-primary btn-lg" onClick={this.changeState}>Submit</button>
             </div>
         );
     }

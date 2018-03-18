@@ -110,3 +110,15 @@ nav {
 #loginBtn button:first-child {
     margin-right: 5px;
 }
+
+#loginQuote {
+    text-align: center;
+}
+
+#accountInfo button{
+    margin-top:20px;
+}
+
+#accountInfo label{
+    margin-top:20px;
+}

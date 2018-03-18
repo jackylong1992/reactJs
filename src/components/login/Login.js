@@ -54,7 +54,7 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1>Please choose how to LOGIN</h1>
+                <h1 id="loginQuote">Please choose how to LOGIN</h1>
                 <div id="loginBtn">
                 <button onClick={this.onlineAccountLogin} className="btn-primary btn-lg">Login by Google Account</button>
                 <button onClick={this.onlineAccountLogin} className="btn-info btn-lg">Login by Facebook Account</button>
