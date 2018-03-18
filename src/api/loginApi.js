@@ -1,6 +1,7 @@
 import firebase from '../myfilebase';
 const LOGIN = 1;
 const LOGOUT = 0;
+import userInfoApi from './userInfoApi';
 class LoginApi {
     // this function verify user is register or not. Return promise which resolve to true or false
     static  verifyUser(userId) {
@@ -11,6 +12,7 @@ class LoginApi {
                 console.log("login API data = ", userList);
                 for (var key in userList) {
                     if (userList[key].id == userId) {
+                        userInfoApi.updateMyInfo(userList[key]);
                         resolve(true);
                     }
                 }

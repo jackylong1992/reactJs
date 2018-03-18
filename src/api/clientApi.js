@@ -1,5 +1,7 @@
 import $ from 'jquery';
 import firebase from '../myfilebase';
+import referenceMapping from '../api/referenceMappingApi';
+import userInfoApi from '../api/userInfoApi';
 
 function readData (link) {
     var promise = new Promise((resolve) => {
@@ -71,7 +73,7 @@ class ClientApi {
      * @param {*} clientId
      * @return none 
      */
-    static updateClienttatus(referenceId, isFree, chatWith, clientId) {
+    static updateClientStatus(referenceId, isFree, chatWith, clientId) {
         var udpateValue = firebase.database().ref('users/' + referenceId);
         udpateValue.update({chatWith : chatWith || '', isFree : isFree, clientId : clientId });
         return;
@@ -86,6 +88,32 @@ class ClientApi {
         }
         // console.log('channel id = ', ret)
         return ret;
+    }
+
+    static acquireClient(clientId, watchChatBox) {
+        var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
+        this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
+        .then((isAvailable)=> {
+            if (!isAvailable) {
+                return Promise.reject();
+            }
+        })
+        .then(()=> {
+            return this.isChannelExist(channelId);
+        }, () => {
+            console.log("client is busy");
+        })
+        .then ((isExist) => {
+            var channelReference;
+            if (isExist) {
+                channelReference = isExist;
+            } else {
+                channelReference = this.createChatChannel(channelId);
+            }
+            // CHECK: you can call this one from upper layer to avoide calling to export method
+            this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
+            watchChatBox(channelReference);
+        });
     }
 }
 

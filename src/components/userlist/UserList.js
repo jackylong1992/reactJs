@@ -30,7 +30,7 @@ class UserList extends React.Component {
 
     changeToChatBox () {
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
-        console.log("change link", this.props);
+        // console.log("change link", this.props);
     }
 
     render() {

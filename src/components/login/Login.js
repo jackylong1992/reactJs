@@ -36,7 +36,7 @@ class Login extends React.Component {
             } else {
                 browserHistory.push({pathname:'/accountInfo', state: {id: userId}});
             }
-        })
+        });
     }
 
     onlineAccountLogin () {

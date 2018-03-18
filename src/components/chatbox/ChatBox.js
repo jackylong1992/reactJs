@@ -14,6 +14,7 @@ class ChatBox extends React.Component {
         // console.log('update message', this.props);
         // this.props.actions.watchChatBox();
         // accquire client
+        this.props.actions.acquireClient('1113');
     }
 
     componentWillMount() {
