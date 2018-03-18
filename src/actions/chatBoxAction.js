@@ -46,3 +46,15 @@ export function  releaseClient() {
         clientApi.releaseClient();
     }; 
 }
+
+export function watchMyChannel() {
+    return function(dispatch) {
+        dispatch(beginAjaxCall());
+        clientApi.setupWatchReference().then(()=> {
+            mockChatBox.watchData( (chatBox) => {
+                dispatch(loadChatBox(chatBoxModel.processData(chatBox)));
+            });
+        });
+        
+    };
+}

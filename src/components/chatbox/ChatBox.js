@@ -20,8 +20,15 @@ class ChatBox extends React.Component {
 
     componentWillMount() {
         // //console.log('Component WILL MOUNT!');
-        var clientId = userInfoApi.myInfo.clientId;
-        this.props.actions.acquireClient(clientId);
+        if (userInfoApi.myInfo.isActive) {
+            console.log("active user");
+            var clientId = userInfoApi.myInfo.clientId;
+            this.props.actions.acquireClient(clientId);
+        } else {
+            console.log("passive user");
+            this.props.actions.watchMyChannel()
+        }
+        
     }
     componentDidMount() {
         // //console.log('Component DID MOUNT!');

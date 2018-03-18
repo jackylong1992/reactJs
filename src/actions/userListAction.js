@@ -32,9 +32,10 @@ function loadUserList(userList) {
             mockUserList.watchData ('', (userList) => {
                 //console.log("data change", userList);
                 // TODO: change will be propangate many times, need to filter by compare current value and previos value.
-                console.log('userlist change');
+                //console.log('userlist change');
                 if (Object.keys(userList).length == referenceMapping.getMappingData().length) {
-                    console.log('equal ', referenceMapping.getMappingData().length)
+                    //console.log('equal ', referenceMapping.getMappingData().length)
+                    dispatch(loadUserList(userListModel.processData(userList)));
                     return;
                 }
                 referenceMapping.mappingData(userList);

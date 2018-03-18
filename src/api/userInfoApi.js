@@ -11,6 +11,7 @@ class UserInfo {
         this.myInfo.gender = defaultValue;
         this.myInfo.loginStatus = defaultValue;
         this.myInfo.isFree = defaultValue;
+        this.myInfo.isActive = false;
     }
 
     updateMyInfo (newInfo) {
@@ -46,6 +47,10 @@ class UserInfo {
 
         if (newInfo.hasOwnProperty('clientId')) {
             this.myInfo.clientId = newInfo.clientId;
+        }
+
+        if (newInfo.hasOwnProperty('isActive')) {
+            this.myInfo.isActive = newInfo.isActive;
         }
     }
 }

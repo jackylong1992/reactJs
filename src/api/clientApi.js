@@ -28,6 +28,7 @@ class ClientApi {
      */
     static isClientAvailable (clientRef) {
         return readData('/users/' + clientRef).then(function(data) {
+            console.log('client availble', data.isFree);
             if (data.loginStatus && data.isFree) {
                 return true;
             } else {
@@ -60,7 +61,7 @@ class ClientApi {
      * @return channel reference 
      */
     static createChatChannel (channelId) {
-        // //console.log('create chat channel');
+        console.log('create chat channel ', channelId);
         var newChannel = firebase.database().ref('/channel').push();
         newChannel.set({
             between: channelId,
@@ -99,6 +100,7 @@ class ClientApi {
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
+                console.log("promise reject")
                 return Promise.reject();
             }
         })
@@ -106,7 +108,7 @@ class ClientApi {
             
             return this.isChannelExist(channelId);
         }, () => {
-            //console.log("client is busy");
+            console.log("client is busy");
             userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
@@ -133,6 +135,14 @@ class ClientApi {
         this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '');
         userInfoApi.updateMyInfo({chatWith: '', isFree : true, clientId:''});
         browserHistory.push('/userList');
+    }
+
+    static setupWatchReference () {
+        return readData('/users/' + referenceMapping.getReferenceFromId(userInfoApi.myInfo.id))
+        .then((data)=>{
+            userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id});
+            console.log('mapping channel', data.chatWith);
+    });
     }
 }
 
