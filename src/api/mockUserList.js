@@ -38,7 +38,8 @@ import firebase from '../myfilebase'
     }
     // TODO: implement unwatchData to avoid overwrite watch
     static watchData (link, cb) {
-        var starCountRef = firebase.database().ref(link);
+        var starCountRef = firebase.database().ref('/users/' + link);
+        console.log("watch data in", link);
         return starCountRef.on('value', function(snapshot) {
             // //console.log("data change",snapshot.val());
             if (cb) {

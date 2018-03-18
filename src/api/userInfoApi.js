@@ -15,7 +15,7 @@ class UserInfo {
 
     updateMyInfo (newInfo) {
         // this.myInfo = Object.assign(this.myInfo, newInfo)
-        console.log(newInfo);
+        //console.log(newInfo);
         if (newInfo.hasOwnProperty('birthday')) {
             this.myInfo.birthday = newInfo.birthday;
         }

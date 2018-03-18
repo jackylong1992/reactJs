@@ -29,8 +29,8 @@ function loadUserList(userList) {
     
     export function  watchUserList( ) {
         return function(dispatch) {
-            mockUserList.watchData ('/users', (userList) => {
-                console.log("data change", userList);
+            mockUserList.watchData ('', (userList) => {
+                //console.log("data change", userList);
                 referenceMapping.mappingData(userList);
                 dispatch(loadUserList(userListModel.processData(userList)));
             });

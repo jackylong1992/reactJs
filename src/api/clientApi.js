@@ -42,10 +42,11 @@ class ClientApi {
      */
     static isChannelExist (channelId) {
         return readData('/channel').then(function(data) {
+            console.log("searching for channel in ", data);
             for (var channel in data) {
                 if(data[channel].between == channelId) {
                     //g_user.onChannel = channel;
-                    console.log("channel exist", channel);
+                    //console.log("channel exist", channel);
                     return channel;
                 }
             }
@@ -94,6 +95,7 @@ class ClientApi {
 
     static acquireClient(clientId) {
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
+        console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
@@ -104,7 +106,7 @@ class ClientApi {
             
             return this.isChannelExist(channelId);
         }, () => {
-            //console.log("client is busy");
+            console.log("client is busy");
             userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
