@@ -12,22 +12,22 @@ class ChatBox extends React.Component {
         this.changeToChatBox = this.changeToUserList.bind(this);
         
         this.sendMessage = this.sendMessage.bind(this);
-        // console.log('update message', this.props);
+        // //console.log('update message', this.props);
         // this.props.actions.watchChatBox();
         // accquire client
-        var clientId = userInfoApi.clientId;
+        var clientId = userInfoApi.myInfo.clientId;
         this.props.actions.acquireClient(clientId);
     }
 
     componentWillMount() {
-        // console.log('Component WILL MOUNT!');
+        // //console.log('Component WILL MOUNT!');
     }
     componentDidMount() {
-        // console.log('Component DID MOUNT!');
+        // //console.log('Component DID MOUNT!');
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('Component WILL RECIEVE PROPS!', newProps);
+        //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
     changeToUserList () {
@@ -36,7 +36,7 @@ class ChatBox extends React.Component {
     }
 
     sendMessage () {
-        console.log("sendMessage");
+        //console.log("sendMessage");
         var message = $('#messageSpace input').val();
         this.props.actions.sendChatBox("1111", message);
     }

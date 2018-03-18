@@ -17,7 +17,7 @@ export function  watchChatBox(channelRef) {
         dispatch(beginAjaxCall());
         // return mockChatBox.watchData('/channel/' + referenceMapping.getReferenceFromId(g_user.clientId))
         return mockChatBox.watchData( (chatBox) => {
-            console.log("message list", chatBoxModel.processData(chatBox));
+            //console.log("message list", chatBoxModel.processData(chatBox));
             dispatch(loadChatBox(chatBoxModel.processData(chatBox)));
         });
     };

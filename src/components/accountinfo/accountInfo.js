@@ -11,23 +11,23 @@ class AccountInfo extends React.Component {
         super(props, context);
         this.changeToNextState = this.changeToNextState.bind(this);
         this.changeState = this.changeState.bind(this);
-        console.log("this is account info in page first data = ", this.props);
+        //console.log("this is account info in page first data = ", this.props);
     }
 
     componentWillMount() {
-        // console.log('Component WILL MOUNT!');
+        // //console.log('Component WILL MOUNT!');
     }
     componentDidMount() {
-        // console.log('Component DID MOUNT!');
+        // //console.log('Component DID MOUNT!');
     }
 
     componentWillReceiveProps(newProps) {
-        // console.log('Component WILL RECIEVE PROPS!', newProps);
+        // //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
     changeToNextState (state) {
         browserHistory.push(state);
-        //console.log("change link", this.props);
+        ////console.log("change link", this.props);
     }
 
     changeState () {

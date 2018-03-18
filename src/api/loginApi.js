@@ -9,7 +9,7 @@ class LoginApi {
             var starCountRef = firebase.database().ref('/users');
             starCountRef.once('value', function(snapshot) {
                 var userList = snapshot.val();
-                console.log("login API data = ", userList);
+                //console.log("login API data = ", userList);
                 for (var key in userList) {
                     if (userList[key].id == userId) {
                         userInfoApi.updateMyInfo(userList[key]);

@@ -7,7 +7,7 @@ export default function userListReducer(state = initialState.userList, action) {
       return action.userList;
 
     case types.BEGIN_FIREBASE:
-        console.log("begin firebase");
+        //console.log("begin firebase");
       return state;
 
     default:

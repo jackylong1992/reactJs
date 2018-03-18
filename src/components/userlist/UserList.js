@@ -8,30 +8,30 @@ class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
         // this.changeToChatBox = this.changeToChatBox.bind(this);
-        console.log("this is usrList page first data = ", this.props);
-        // console.log('update user list');
+        //console.log("this is usrList page first data = ", this.props);
+        // //console.log('update user list');
         this.props.actions.updateUserList();
-        // console.log('watch user list');
+        // //console.log('watch user list');
         this.props.actions.watchUserList();
         
         this.props.actions.watchMyInfo();
     }
 
     componentWillMount() {
-        // console.log('Component WILL MOUNT!');
+        // //console.log('Component WILL MOUNT!');
     }
     componentDidMount() {
-        // console.log('Component DID MOUNT!');
+        // //console.log('Component DID MOUNT!');
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('userList receive new props', newProps);
+        //console.log('userList receive new props', newProps);
     }
 
     changeToChatBox (clientId) {
         userInfoApi.updateMyInfo({clientId: clientId});
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
-        // console.log("change link", this.props);
+        // //console.log("change link", this.props);
     }
 
     render() {

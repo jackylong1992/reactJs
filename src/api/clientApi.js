@@ -8,7 +8,7 @@ function readData (link) {
     var promise = new Promise((resolve) => {
         var starCountRef = firebase.database().ref(link);
         starCountRef.once('value', function(snapshot) {
-            console.log("snapshot result success", snapshot.val());
+            //console.log("snapshot result success", snapshot.val());
             resolve(snapshot.val());
         });
     });
@@ -58,7 +58,7 @@ class ClientApi {
      * @return channel reference 
      */
     static createChatChannel (channelId) {
-        // console.log('create chat channel');
+        // //console.log('create chat channel');
         var newChannel = firebase.database().ref('/channel').push();
         newChannel.set({
             between: channelId,
@@ -87,7 +87,7 @@ class ClientApi {
         } else {
             ret = clientId + userId;
         }
-        // console.log('channel id = ', ret)
+        // //console.log('channel id = ', ret)
         return ret;
     }
 
@@ -102,7 +102,7 @@ class ClientApi {
         .then(()=> {
             return this.isChannelExist(channelId);
         }, () => {
-            console.log("client is busy");
+            //console.log("client is busy");
             browserHistory.push('/userList');
         })
         .then ((isExist) => {

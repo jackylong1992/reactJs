@@ -18,7 +18,7 @@ class ChatBox {
     static watchData (cb) {
         this.reference = firebase.database().ref('/channel/-L7XCshe2qzEsYGrgBbf/messageList');
         this.watchId = this.reference.on('value', function(snapshot) {
-            console.log("chat box data", snapshot.val());
+            //console.log("chat box data", snapshot.val());
             if (cb) {
                 cb(snapshot.val());
             }
