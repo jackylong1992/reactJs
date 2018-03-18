@@ -45,6 +45,7 @@ class ClientApi {
             for (var channel in data) {
                 if(data[channel].between == channelId) {
                     //g_user.onChannel = channel;
+                    console.log("channel exist", channel);
                     return channel;
                 }
             }
@@ -91,15 +92,16 @@ class ClientApi {
         return ret;
     }
 
-    static acquireClient(clientId, watchChatBox) {
+    static acquireClient(clientId) {
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
-        this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
+        return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
                 return Promise.reject();
             }
         })
         .then(()=> {
+            
             return this.isChannelExist(channelId);
         }, () => {
             //console.log("client is busy");
@@ -118,14 +120,16 @@ class ClientApi {
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
             this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, clientId);
+            userInfoApi.updateMyInfo({chatWith: channelReference});
             
-            watchChatBox(channelReference);
+            // watchChatBox(channelReference);
         });
     }
 
     static releaseClient() {
         this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.clientId), true, '', '');
         this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '');
+        userInfoApi.updateMyInfo({chatWith: '', isFree : true, clientId:''});
         browserHistory.push('/userList');
     }
 }

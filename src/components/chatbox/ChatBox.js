@@ -39,7 +39,7 @@ class ChatBox extends React.Component {
     sendMessage () {
         //console.log("sendMessage");
         var message = $('#messageSpace input').val();
-        this.props.actions.sendChatBox("1111", message);
+        this.props.actions.sendChatBox(message);
     }
 
     render() {

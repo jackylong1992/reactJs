@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import loginApi from '../../api/loginApi';
 import $ from 'jquery';
+import userInfoApi from './../../api/userInfoApi';
 // import * as usrListAction from '../../actions/userListAction';
 
 class AccountInfo extends React.Component {
@@ -36,7 +37,9 @@ class AccountInfo extends React.Component {
         user.displayName = $('#nickName').val();
         user.birthday = $('#birthDay').val();
         user.gender = $('#gender').val();
+        userInfoApi.updateMyInfo({id: user.uid, name: user.displayName, birthday:user.birthday, gender: user.gender});
         loginApi.addUser(user);
+
         this.changeToNextState('/userList');
     }
 
