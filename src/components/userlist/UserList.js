@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as usrListAction from '../../actions/userListAction';
-
+import userInfoApi from '../../api/userInfoApi';
 class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.changeToChatBox = this.changeToChatBox.bind(this);
+        // this.changeToChatBox = this.changeToChatBox.bind(this);
         console.log("this is usrList page first data = ", this.props);
         // console.log('update user list');
         this.props.actions.updateUserList();
@@ -28,7 +28,8 @@ class UserList extends React.Component {
         console.log('userList receive new props', newProps);
     }
 
-    changeToChatBox () {
+    changeToChatBox (clientId) {
+        userInfoApi.updateMyInfo({clientId: clientId});
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
         // console.log("change link", this.props);
     }
@@ -38,7 +39,7 @@ class UserList extends React.Component {
             <div>
                 <h1>This page display user list</h1>
                 {this.props.state.userList.map(user =>
-                <li key={user.id} onClick={this.changeToChatBox}>{user.id} - {user.name}</li>
+                <li key={user.id} id={user.id} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</li>
                 )}
             </div>
         );

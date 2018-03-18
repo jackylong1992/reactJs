@@ -2,6 +2,7 @@ import $ from 'jquery';
 import firebase from '../myfilebase';
 import referenceMapping from '../api/referenceMappingApi';
 import userInfoApi from '../api/userInfoApi';
+import {browserHistory} from 'react-router';
 
 function readData (link) {
     var promise = new Promise((resolve) => {
@@ -102,6 +103,7 @@ class ClientApi {
             return this.isChannelExist(channelId);
         }, () => {
             console.log("client is busy");
+            browserHistory.push('/userList');
         })
         .then ((isExist) => {
             var channelReference;

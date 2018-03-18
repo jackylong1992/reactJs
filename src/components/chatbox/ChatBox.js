@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as ChatBoxAction from '../../actions/chatBoxAction';
 import $ from 'jquery';
+import userInfoApi from '../../api/userInfoApi';
 
 class ChatBox extends React.Component {
     constructor(props, context) {
@@ -14,7 +15,8 @@ class ChatBox extends React.Component {
         // console.log('update message', this.props);
         // this.props.actions.watchChatBox();
         // accquire client
-        this.props.actions.acquireClient('1113');
+        var clientId = userInfoApi.clientId;
+        this.props.actions.acquireClient(clientId);
     }
 
     componentWillMount() {
