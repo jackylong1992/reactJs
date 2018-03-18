@@ -34,12 +34,16 @@ class ChatBox extends React.Component {
     }
     componentDidMount() {
         // //console.log('Component DID MOUNT!');
+        $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
     }
 
     componentWillReceiveProps(newProps) {
         //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
+    }
     changeToUserList () {
         console.log("release client");
         this.props.actions.releaseClient();
@@ -51,6 +55,7 @@ class ChatBox extends React.Component {
         var message = $('#messageSpace input').val();
         this.props.actions.sendChatBox(message);
         $('#messageSpace input').val("");
+        $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
     }
 
     render() {

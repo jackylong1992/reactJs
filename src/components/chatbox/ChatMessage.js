@@ -13,6 +13,7 @@ function isURL(str) {
 
 // this function return string with hightlight URL
 function highlightURL(str) {
+    if (!str) return;
     var tempArr = str.split(" ");
     var retString = '';
     return tempArr.reduce(function(acc, value) {
@@ -26,7 +27,6 @@ function highlightURL(str) {
     }, '');
 }
 const ChatMessage = ({name, isSent}) => {
-    console.log(name);
     var text = highlightURL(name);
     if (isSent) {
         return (
