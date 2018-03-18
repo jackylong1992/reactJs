@@ -101,3 +101,12 @@ nav {
     width: 96%;
     bottom: 30px;
 }
+
+#loginBtn {
+    margin-top: 100px;
+    text-align: center;
+}
+
+#loginBtn button:first-child {
+    margin-right: 5px;
+}
