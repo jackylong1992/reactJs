@@ -121,7 +121,7 @@ class ClientApi {
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
-            this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, clientId);
+            this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, '');
             userInfoApi.updateMyInfo({chatWith: channelReference});
             
             // watchChatBox(channelReference);

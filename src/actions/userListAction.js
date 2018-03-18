@@ -31,6 +31,7 @@ function loadUserList(userList) {
         return function(dispatch) {
             mockUserList.watchData ('', (userList) => {
                 //console.log("data change", userList);
+                // TODO: change will be propangate many times, need to filter by compare current value and previos value.
                 referenceMapping.mappingData(userList);
                 dispatch(loadUserList(userListModel.processData(userList)));
             });
@@ -47,7 +48,14 @@ function loadUserList(userList) {
                 // QUESTION: how the state is reander in this case
                 // need to verify my info change
                 // browserHistory.push('/userList');
-                console.log("my info change");
+                console.log("my info change", myInfo.clientId.toString().length);
+                if (!myInfo.isFree && myInfo.clientId.toString().length) {
+                    console.log('go to chat page');
+                    browserHistory.push('/chatBox');
+                } else if (myInfo.isFree) {
+                    console.log('go to user page');
+                    browserHistory.push('/userList');
+                }
             });
         };
     }
