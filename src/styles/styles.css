@@ -30,3 +30,9 @@ nav {
 .isBusy {
     color: red;
 }
+
+.main-container {
+    border: solid 2px black;
+    max-width: 750px;
+    min-height: 1334px;
+}

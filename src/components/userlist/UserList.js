@@ -43,16 +43,18 @@ class UserList extends React.Component {
         return (
             <div>
                 <h1>This page display user list</h1>
+                <div className={"panel panel-default"}>
                 {this.props.state.userList.map(user => {
                     if (!user.isFree) {
-                        return <li key={user.id} id={user.id} className={'isBusy'} onClick={this.cannotClickMe}>{user.id} - {user.name}</li>;
+                        return <div className={"panel-danger"}><div key={user.id} id={user.id} className={'isBusy panel-heading'} onClick={this.cannotClickMe}>{user.id} - {user.name}</div></div>;
                     } else {
-                        return <li key={user.id} id={user.id} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</li>;
+                        return <div key={user.id} id={user.id} className={'panel-heading'} onClick={this.changeToChatBox.bind(this, user.id)}>{user.id} - {user.name}</div>;
                     }
                     
                 }
                 
                 )}
+                </div>
             </div>
         );
     }

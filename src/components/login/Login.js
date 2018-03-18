@@ -54,10 +54,11 @@ class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1>This page display user LOGIN</h1>
-                <button onClick={this.onlineAccountLogin}>Login by Google Account</button>
-                <button onClick={this.onlineAccountLogin}>Login by Facebook Account</button>
-                <label>User Id : </label> <input id="userId" type="text"></input>
+                <h1>Please choose how to LOGIN</h1>
+                <button onClick={this.onlineAccountLogin} className="btn-primary btn-lg">Login by Google Account</button>
+                <button onClick={this.onlineAccountLogin} className="btn-info btn-lg">Login by Facebook Account</button><br/>
+                <br/>
+                <label>User Id (this is for test purpose): </label> <input id="userId" type="text"></input>
             </div>
         );
     }
