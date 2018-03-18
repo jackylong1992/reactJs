@@ -9,16 +9,17 @@ class UserList extends React.Component {
         super(props, context);
         // this.changeToChatBox = this.changeToChatBox.bind(this);
         //console.log("this is usrList page first data = ", this.props);
-        // //console.log('update user list');
-        this.props.actions.updateUserList();
-        // //console.log('watch user list');
-        this.props.actions.watchUserList();
-        
-        this.props.actions.watchMyInfo();
+
     }
 
     componentWillMount() {
         // //console.log('Component WILL MOUNT!');
+        // //console.log('update user list');
+        this.props.actions.updateUserList();
+        // //console.log('watch user list');
+        this.props.actions.watchUserList();
+        // userInfoApi is parse from login phrase
+        this.props.actions.watchMyInfo();
     }
     componentDidMount() {
         // //console.log('Component DID MOUNT!');

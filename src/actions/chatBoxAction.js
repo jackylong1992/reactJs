@@ -36,3 +36,9 @@ export function  acquireClient(clientId) {
         clientApi.acquireClient(clientId, watchChatBox);
     }; 
 }
+
+export function  releaseClient() {
+    return function() {
+        clientApi.releaseClient();
+    }; 
+}

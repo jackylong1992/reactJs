@@ -45,7 +45,7 @@ class ClientApi {
             for (var channel in data) {
                 if(data[channel].between == channelId) {
                     //g_user.onChannel = channel;
-                    return true;
+                    return channel;
                 }
             }
             return false;
@@ -83,9 +83,9 @@ class ClientApi {
     static createChannelListId (userId, clientId) {
         var ret;
         if (userId < clientId) {
-            ret = userId + clientId;
+            ret = userId.toString() + clientId.toString();
         } else {
-            ret = clientId + userId;
+            ret = clientId.toString() + userId.toString();
         }
         // //console.log('channel id = ', ret)
         return ret;
@@ -103,19 +103,30 @@ class ClientApi {
             return this.isChannelExist(channelId);
         }, () => {
             //console.log("client is busy");
+            userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
         .then ((isExist) => {
             var channelReference;
             if (isExist) {
                 channelReference = isExist;
+                console.log("channel exist");
             } else {
                 channelReference = this.createChatChannel(channelId);
+                console.log("create new channel");
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
+            this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, clientId);
+            
             watchChatBox(channelReference);
         });
+    }
+
+    static releaseClient() {
+        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.clientId), true, '', '');
+        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '');
+        browserHistory.push('/userList');
     }
 }
 

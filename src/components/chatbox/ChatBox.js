@@ -9,18 +9,19 @@ import userInfoApi from '../../api/userInfoApi';
 class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.changeToChatBox = this.changeToUserList.bind(this);
+        this.changeToUserList = this.changeToUserList.bind(this);
         
         this.sendMessage = this.sendMessage.bind(this);
         // //console.log('update message', this.props);
         // this.props.actions.watchChatBox();
         // accquire client
-        var clientId = userInfoApi.myInfo.clientId;
-        this.props.actions.acquireClient(clientId);
+        
     }
 
     componentWillMount() {
         // //console.log('Component WILL MOUNT!');
+        var clientId = userInfoApi.myInfo.clientId;
+        this.props.actions.acquireClient(clientId);
     }
     componentDidMount() {
         // //console.log('Component DID MOUNT!');
@@ -31,7 +32,7 @@ class ChatBox extends React.Component {
     }
 
     changeToUserList () {
-        browserHistory.push('/userList');
+        this.props.actions.releaseClient();
         // TODO: release client information in here
     }
 
