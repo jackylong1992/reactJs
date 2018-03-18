@@ -122,3 +122,8 @@ nav {
 #accountInfo label{
     margin-top:20px;
 }
+
+.isLink {
+    text-decoration: underline;
+    color: blue;
+}
