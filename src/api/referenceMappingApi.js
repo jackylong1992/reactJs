@@ -2,9 +2,9 @@ import $ from 'jquery';
 class ReferenceMapping {
     constructor () {
         this.referenceMap = [];
+        console.log("constructor");
     }
     static mappingData (data) {
-        console.log("remapping data", data);
         this.referenceMap = [];
         for (var userData in data) {
             this.referenceMap.push({id:data[userData].id, reference: userData })
@@ -21,6 +21,10 @@ class ReferenceMapping {
             }
         })
         return reference;
+    }
+
+    static getMappingData() {
+        return this.referenceMap;
     }
 }
 

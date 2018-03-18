@@ -11,7 +11,7 @@ class LoginApi {
             starCountRef.once('value', function(snapshot) {
                 var userList = snapshot.val();
                 referenceMapping.mappingData(userList);
-                console.log("mapping data", userList);
+                //console.log("mapping data", userList);
                 //console.log("login API data = ", userList);
                 for (var key in userList) {
                     if (userList[key].id == userId) {
@@ -36,6 +36,13 @@ class LoginApi {
             clientId: "",
             birthday: user.birthday,
             gender: user.gender
+        })
+        .then(()=>{
+            var starCountRef = firebase.database().ref('/users');
+            starCountRef.once('value', function(snapshot) {
+                var userList = snapshot.val();
+                referenceMapping.mappingData(userList);
+            });
         });
     }
 }

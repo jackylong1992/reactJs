@@ -42,7 +42,7 @@ class ClientApi {
      */
     static isChannelExist (channelId) {
         return readData('/channel').then(function(data) {
-            console.log("searching for channel in ", data);
+            //console.log("searching for channel in ", data);
             for (var channel in data) {
                 if(data[channel].between == channelId) {
                     //g_user.onChannel = channel;
@@ -95,7 +95,7 @@ class ClientApi {
 
     static acquireClient(clientId) {
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
-        console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
+        //console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
@@ -106,7 +106,7 @@ class ClientApi {
             
             return this.isChannelExist(channelId);
         }, () => {
-            console.log("client is busy");
+            //console.log("client is busy");
             userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
@@ -114,10 +114,10 @@ class ClientApi {
             var channelReference;
             if (isExist) {
                 channelReference = isExist;
-                console.log("channel exist");
+                //console.log("channel exist");
             } else {
                 channelReference = this.createChatChannel(channelId);
-                console.log("create new channel");
+                //console.log("create new channel");
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
