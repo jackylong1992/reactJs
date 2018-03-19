@@ -29,9 +29,11 @@ class ChatBox {
     }
 
      unWatchData () {
-        console.log("UNWATCH DATA")
+        
         if (this.reference) {
+            console.log("UNWATCH DATA")
             this.reference.off('value', this.watchId);
+            this.reference = undefined;
         }
         
     }
