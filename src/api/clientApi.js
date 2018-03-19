@@ -95,6 +95,7 @@ class ClientApi {
     }
 
     static acquireClient(clientId) {
+        console.log("ACQUIRE CLIENT", clientId);
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
         //console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))

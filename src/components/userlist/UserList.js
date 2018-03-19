@@ -31,6 +31,7 @@ class UserList extends React.Component {
     }
 
     changeToChatBox (clientId) {
+        console.log("CHANGE TO CHAT BOX", clientId);
         userInfoApi.updateMyInfo({clientId: clientId, isActive : true});
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
         // //console.log("change link", this.props);
