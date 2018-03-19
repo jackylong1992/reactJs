@@ -35,6 +35,7 @@ class LoginApi {
             isFree : true,
             chatWith : "",
             clientId: "",
+            clientName : "",
             birthday: user.birthday,
             gender: user.gender
         })

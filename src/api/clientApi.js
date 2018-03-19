@@ -77,9 +77,9 @@ class ClientApi {
      * @param {*} clientId
      * @return none 
      */
-    static updateClientStatus(referenceId, isFree, chatWith, clientId) {
+    static updateClientStatus(referenceId, isFree, chatWith, clientId, clientName) {
         var udpateValue = firebase.database().ref('users/' + referenceId);
-        udpateValue.update({chatWith : chatWith || '', isFree : isFree, clientId : clientId });
+        udpateValue.update({chatWith : chatWith || '', isFree : isFree, clientId : clientId, clientName });
         return;
     }
 
@@ -123,8 +123,8 @@ class ClientApi {
                 console.log("create new channel");
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
-            this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
-            this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, '');
+            this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id, userInfoApi.myInfo.name);
+            this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, '', '');
             userInfoApi.updateMyInfo({chatWith: channelReference});
             
             // watchChatBox(channelReference);
@@ -132,8 +132,8 @@ class ClientApi {
     }
 
     static releaseClient() {
-        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.clientId), true, '', '');
-        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '');
+        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.clientId), true, '', '', '');
+        this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '', '');
         userInfoApi.updateMyInfo({chatWith: '', isFree : true, clientId:''});
         browserHistory.push('/userList');
     }
@@ -141,7 +141,7 @@ class ClientApi {
     static setupWatchReference () {
         return readData('/users/' + referenceMapping.getReferenceFromId(userInfoApi.myInfo.id))
         .then((data)=>{
-            userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id});
+            userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id, clientName:data.clientName});
             // console.log('mapping channel', data.chatWith);
     });
     }
