@@ -4,6 +4,7 @@ import userListModel from '../model/userList';
 import referenceMapping from '../api/referenceMappingApi';
 import {browserHistory} from 'react-router';
 import userInfoApi from '../api/userInfoApi';
+import mockChatBox from '../api/mockChatBox';
 
 var watchId;
 function beginAjaxCall () {
@@ -71,6 +72,7 @@ function loadUserList(userList) {
                     } else if (myInfo.isFree) {
                         //console.log('go to user page');
                         browserHistory.push('/userList');
+                        mockChatBox.unWatchData();
                     }
                 } catch (err) {
                     console.error('issue in UserList Action ', err);

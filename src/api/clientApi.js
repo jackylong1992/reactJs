@@ -3,6 +3,7 @@ import firebase from '../myfilebase';
 import referenceMapping from '../api/referenceMappingApi';
 import userInfoApi from '../api/userInfoApi';
 import {browserHistory} from 'react-router';
+import mockChatBox from './mockChatBox';
 
 function readData (link) {
     var promise = new Promise((resolve) => {
@@ -135,6 +136,7 @@ class ClientApi {
         this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.clientId), true, '', '', '');
         this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), true,'' , '', '');
         userInfoApi.updateMyInfo({chatWith: '', isFree : true, clientId:''});
+        mockChatBox.unWatchData();
         browserHistory.push('/userList');
     }
 
