@@ -12,7 +12,8 @@ class Login extends React.Component {
         this.changeToNextState = this.changeToNextState.bind(this);
         this.onlineAccountLoginWithGoogle = this.onlineAccountLoginWithGoogle.bind(this);
         this.onlineAccountLoginWithFacebook = this.onlineAccountLoginWithFacebook.bind(this);
-        this.onlineAccountLoginAsDefault = this.onlineAccountLoginAsDefault.bind(this);
+        this.onlineAccountLoginAsDefaultLongNguyen = this.onlineAccountLoginAsDefaultLongNguyen.bind(this);
+        this.onlineAccountLoginAsDefaultGotit = this.onlineAccountLoginAsDefaultGotit.bind(this);
         //console.log("this is log in page first data = ", this.props);
     }
 
@@ -59,8 +60,12 @@ class Login extends React.Component {
         });
     }
 
-    onlineAccountLoginAsDefault() {
+    onlineAccountLoginAsDefaultLongNguyen() {
         this.changeToNextState('1111');
+    }
+
+    onlineAccountLoginAsDefaultGotit() {
+        this.changeToNextState('2222');
     }
 
     render() {
@@ -74,7 +79,8 @@ class Login extends React.Component {
                 <br/>
                 <br/>
                 <div id="defaultButton">
-                <button onClick={this.onlineAccountLoginAsDefault} className="btn-default btn-lg">Login as Default User</button></div>
+                <button onClick={this.onlineAccountLoginAsDefaultLongNguyen} className="btn-default btn-lg">Login as Long Nguyen (for testing)</button><br/>
+                <button onClick={this.onlineAccountLoginAsDefaultGotit} className="btn-default btn-lg">Login as GotIt (for testing)</button></div>
             </div>
         );
     }
