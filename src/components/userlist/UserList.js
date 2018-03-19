@@ -23,7 +23,8 @@ class UserList extends React.Component {
         // this.props.actions.watchMyInfo();
     }
     componentDidMount() {
-        // //console.log('Component DID MOUNT!');
+        console.log('Component DID MOUNT!', userInfoApi.myInfo.name);
+
     }
 
     componentWillReceiveProps(newProps) {
@@ -44,7 +45,7 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
-                <h1>Online Users</h1>
+                <h1>Welcome {userInfoApi.myInfo.name}!</h1>
                 {this.props.state.userList.map(user => {
                     if (!user.isFree) {
                         return <UserCard key={user.id} name={user.name} isBusy={true} onClick={this.cannotClickMe}/>;
