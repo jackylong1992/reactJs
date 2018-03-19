@@ -14,7 +14,6 @@ function readData (link) {
     });
 
     return promise;
-    
 }
 
 class ClientApi {
@@ -129,7 +128,7 @@ class ClientApi {
         return readData('/users/' + referenceMapping.getReferenceFromId(userInfoApi.myInfo.id))
         .then((data)=>{
             userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id, clientName:data.clientName});
-    });
+        });
     }
 }
 

@@ -1,8 +1,7 @@
 
 import firebase from '../myfilebase'
 
-
-  class UserList {
+class UserList {
     static readData (link) {
         var promise = new Promise ( (resolve, reject) => {
             var starCountRef = firebase.database().ref(link);
@@ -23,7 +22,6 @@ import firebase from '../myfilebase'
         });
         return starCountRef;
     }
-  }
-  
+}
 
 export default UserList;

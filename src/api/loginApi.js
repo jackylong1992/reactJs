@@ -3,6 +3,7 @@ const LOGIN = true;
 const LOGOUT = false;
 import userInfoApi from './userInfoApi';
 import referenceMapping from './referenceMappingApi';
+
 class LoginApi {
     // this function verify user is register or not. Return promise which resolve to true or false
     static  verifyUser(userId) {

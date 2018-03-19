@@ -7,8 +7,6 @@ import * as usrListAction from '../actions/userListAction';
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
-        
-
     }
 
   render() {
@@ -41,4 +39,3 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-// TODO: how this.props.children can contain sub element of home page?

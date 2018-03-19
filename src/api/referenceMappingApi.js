@@ -1,8 +1,10 @@
 import $ from 'jquery';
+
 class ReferenceMapping {
     constructor () {
         this.referenceMap = [];
     }
+    
     static mappingData (data) {
         this.referenceMap = [];
         for (var userData in data) {

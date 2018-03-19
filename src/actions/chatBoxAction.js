@@ -8,18 +8,10 @@ import userInfoApi from '../api/userInfoApi';
 function beginAjaxCall () {
     return {type: types.BEGIN_FIREBASE};
 }
+
 function loadChatBox(chatBox) {
     return {type: types.UPDATE_CHAT_BOX, chatBox};
-  }
-
-// export function  watchChatBox(channelRef) {
-//     return function(dispatch) {
-//         dispatch(beginAjaxCall());
-//         return mockChatBox.watchData( (chatBox) => {
-//             dispatch(loadChatBox(chatBoxModel.processData(chatBox)));
-//         });
-//     };
-// }
+}
 
 export function  sendChatBox(message ) {
     return function(dispatch) {

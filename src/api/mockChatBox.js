@@ -1,13 +1,14 @@
 
 import firebase from '../myfilebase';
 import referenceMappingApi from './referenceMappingApi';
-import userInfoApi from './userInfoApi'
+import userInfoApi from './userInfoApi';
+
 class ChatBox {
     constructor () {
         this.reference;
         this.watchId;
     }
-     sendData (senderId, message) {
+    sendData (senderId, message) {
         var messageList = firebase.database().ref('/channel/'+ userInfoApi.myInfo.onChannel +'/messageList').push();
         messageList.set({
             from : senderId,
@@ -15,7 +16,7 @@ class ChatBox {
         });
     }
 
-     watchData (cb) {
+    watchData (cb) {
         this.reference = firebase.database().ref('/channel/'+ userInfoApi.myInfo.onChannel +'/messageList');
         this.watchId = this.reference.on('value', function(snapshot) {
             if (cb) {
@@ -25,7 +26,7 @@ class ChatBox {
         return;
     }
 
-     unWatchData () {
+    unWatchData () {
         
         if (this.reference) {
             this.reference.off('value', this.watchId);

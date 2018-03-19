@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import loginApi from '../../api/loginApi';
 import $ from 'jquery';
 import userInfoApi from './../../api/userInfoApi';
-// import * as usrListAction from '../../actions/userListAction';
 
 class AccountInfo extends React.Component {
     constructor(props, context) {

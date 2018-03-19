@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import renderHTML from 'react-render-html';
+
 function isURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
     '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name and extension
@@ -26,6 +27,7 @@ function highlightURL(str) {
 		return temp;
     }, '');
 }
+
 const ChatMessage = ({name, isSent}) => {
     var text = highlightURL(name);
     if (isSent) {
