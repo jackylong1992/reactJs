@@ -47,6 +47,7 @@ class UserList extends React.Component {
             <div>
                 <h1>Welcome {userInfoApi.myInfo.name}!</h1>
                 {this.props.state.userList.map(user => {
+                    if (user.id == userInfoApi.myInfo.id) return;
                     if (!user.isFree) {
                         return <UserCard key={user.id} name={user.name} isBusy={true} onClick={this.cannotClickMe}/>;
                     } else {
