@@ -72,10 +72,33 @@ class LoginApi {
             //     // resolve(snapshot.val());
             // });
         });
+
+        
     }
     
-    static loginByFacebook (user) {
-        
+    static loginByFaceBook (user) {
+        console.log('start login by FB');
+        var provider = new firebase.auth.FacebookAuthProvider();
+        return firebase.auth().signInWithPopup(provider).catch(function(error) {
+            ////console.log(error);
+        }).then(function(result) {
+            // console.log(result.user);
+            // console.log('log in success');
+            return(result.user.uid);
+
+            // The signed-in user info.
+            // var user = result.user;
+
+            //readData();
+            // 
+            //console.log("log in ok");
+            // //console.log(firebase.toString());
+            // firebase.on('value',  (snapshot) => {
+            //     //console.log("snapshot result = ", snapshot.val());
+            //     console.error('fuck');
+            //     // resolve(snapshot.val());
+            // });
+        });
     }
 }
 export default LoginApi;

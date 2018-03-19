@@ -152,3 +152,7 @@ nav {
 ::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
 }
+
+#defaultButton{
+    text-align: center;
+}

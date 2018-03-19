@@ -12,6 +12,7 @@ class Login extends React.Component {
         this.changeToNextState = this.changeToNextState.bind(this);
         this.onlineAccountLoginWithGoogle = this.onlineAccountLoginWithGoogle.bind(this);
         this.onlineAccountLoginWithFacebook = this.onlineAccountLoginWithFacebook.bind(this);
+        this.onlineAccountLoginAsDefault = this.onlineAccountLoginAsDefault.bind(this);
         //console.log("this is log in page first data = ", this.props);
     }
 
@@ -50,8 +51,16 @@ class Login extends React.Component {
     onlineAccountLoginWithFacebook () {
         // loginApi.loginByGoogle()
         // .then((userId)=>{
-            this.changeToNextState('1111');
+            // this.changeToNextState('1111');
         // });
+        loginApi.loginByFaceBook()
+        .then((userId)=>{
+            this.changeToNextState(userId);
+        });
+    }
+
+    onlineAccountLoginAsDefault() {
+        this.changeToNextState('1111');
     }
 
     render() {
@@ -64,7 +73,8 @@ class Login extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                <label>User Id (this is for test purpose): </label> <input id="userId" type="text"></input>
+                <div id="defaultButton">
+                <button onClick={this.onlineAccountLoginAsDefault} className="btn-default btn-lg">Login as Default User</button></div>
             </div>
         );
     }
