@@ -8,50 +8,38 @@ import userInfoApi from '../../api/userInfoApi';
 import ChatBar from './ChatBar';
 import ChatMessage from './ChatMessage';
 import InputBar from './InputBar';
+
 class ChatBox extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToUserList = this.changeToUserList.bind(this);
-        
         this.sendMessage = this.sendMessage.bind(this);
-        // //console.log('update message', this.props);
-        // this.props.actions.watchChatBox();
-        // accquire client
-        
     }
 
     componentWillMount() {
-        // //console.log('Component WILL MOUNT!');
         if (userInfoApi.myInfo.isActive) {
-            console.log("active user");
             var clientId = userInfoApi.myInfo.clientId;
             this.props.actions.acquireClient(clientId);
         } else {
-            console.log("passive user");
             this.props.actions.watchMyChannel()
         }
         
     }
     componentDidMount() {
-        // //console.log('Component DID MOUNT!');
         $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
     }
 
     componentWillReceiveProps(newProps) {
-        //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
     componentDidUpdate(prevProps, prevState) {
         $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
     }
     changeToUserList () {
-        console.log("release client");
         this.props.actions.releaseClient();
-        // TODO: release client information in here
     }
 
     sendMessage () {
-        console.log("sendMessage");
         var message = $('#messageSpace input').val();
         this.props.actions.sendChatBox(message);
         $('#messageSpace input').val("");

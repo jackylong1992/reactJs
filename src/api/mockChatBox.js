@@ -8,7 +8,6 @@ class ChatBox {
         this.watchId;
     }
      sendData (senderId, message) {
-        // var messageList = firebase.database().ref('/channel/' +g_user.onChannel + '/messageList').push();
         var messageList = firebase.database().ref('/channel/'+ userInfoApi.myInfo.onChannel +'/messageList').push();
         messageList.set({
             from : senderId,
@@ -18,9 +17,7 @@ class ChatBox {
 
      watchData (cb) {
         this.reference = firebase.database().ref('/channel/'+ userInfoApi.myInfo.onChannel +'/messageList');
-        console.log("STEP 2: is watching on message channel ", userInfoApi.myInfo.onChannel);
         this.watchId = this.reference.on('value', function(snapshot) {
-            //console.log("new message", snapshot.val());
             if (cb) {
                 cb(snapshot.val());
             }
@@ -31,7 +28,6 @@ class ChatBox {
      unWatchData () {
         
         if (this.reference) {
-            console.log("UNWATCH DATA")
             this.reference.off('value', this.watchId);
             this.reference = undefined;
         }

@@ -8,34 +8,25 @@ import UserCard from './UserCard';
 class UserList extends React.Component {
     constructor(props, context) {
         super(props, context);
-        // this.changeToChatBox = this.changeToChatBox.bind(this);
-        //console.log("this is usrList page first data = ", this.props);
+
 
     }
 
     componentWillMount() {
-        // //console.log('Component WILL MOUNT!');
-        // //console.log('update user list');
         this.props.actions.updateUserList();
-        // NOTE: because so watchMyInfo cannot get data at first time because there is no user list yet
         this.props.actions.watchUserList();
-        // userInfoApi is parse from login phrase
-        // this.props.actions.watchMyInfo();
-    }
-    componentDidMount() {
-        console.log('Component DID MOUNT!', userInfoApi.myInfo.name);
 
+    }
+
+    componentDidMount() {
     }
 
     componentWillReceiveProps(newProps) {
-        //console.log('userList receive new props', newProps);
     }
 
     changeToChatBox (clientId, clientName) {
-        console.log("CHANGE TO CHAT BOX", clientId);
         userInfoApi.updateMyInfo({clientId: clientId, isActive : true, clientName:clientName});
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
-        // //console.log("change link", this.props);
     }
 
     cannotClickMe() {

@@ -4,7 +4,6 @@ import {browserHistory} from 'react-router';
 import {bindActionCreators} from 'redux';
 import $ from 'jquery';
 import loginApi from '../../api/loginApi';
-// import * as usrListAction from '../../actions/userListAction';
 
 class Login extends React.Component {
     constructor(props, context) {
@@ -14,24 +13,18 @@ class Login extends React.Component {
         this.onlineAccountLoginWithFacebook = this.onlineAccountLoginWithFacebook.bind(this);
         this.onlineAccountLoginAsDefaultLongNguyen = this.onlineAccountLoginAsDefaultLongNguyen.bind(this);
         this.onlineAccountLoginAsDefaultGotit = this.onlineAccountLoginAsDefaultGotit.bind(this);
-        //console.log("this is log in page first data = ", this.props);
     }
 
     componentWillMount() {
-        // //console.log('Component WILL MOUNT!');
     }
+
     componentDidMount() {
-        // //console.log('Component DID MOUNT!');
     }
 
     componentWillReceiveProps(newProps) {
-        // //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
     changeToNextState (userId) {
-        // browserHistory.push({pathname : state, state: {userId : $('#userId').val()}});
-        ////console.log("change link", this.props);
-        // var userId = $('#userId').val();
         loginApi.verifyUser(userId)
         .then((isExist)=> {
             if (isExist) {
@@ -50,10 +43,6 @@ class Login extends React.Component {
     }
 
     onlineAccountLoginWithFacebook () {
-        // loginApi.loginByGoogle()
-        // .then((userId)=>{
-            // this.changeToNextState('1111');
-        // });
         loginApi.loginByFaceBook()
         .then((userId)=>{
             this.changeToNextState(userId);

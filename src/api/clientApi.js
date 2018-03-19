@@ -9,7 +9,6 @@ function readData (link) {
     var promise = new Promise((resolve) => {
         var starCountRef = firebase.database().ref(link);
         starCountRef.once('value', function(snapshot) {
-            //console.log("snapshot result success", snapshot.val());
             resolve(snapshot.val());
         });
     });
@@ -29,7 +28,6 @@ class ClientApi {
      */
     static isClientAvailable (clientRef) {
         return readData('/users/' + clientRef).then(function(data) {
-            // console.log('client availble', data.isFree);
             if (data.loginStatus && data.isFree) {
                 return true;
             } else {
@@ -44,11 +42,8 @@ class ClientApi {
      */
     static isChannelExist (channelId) {
         return readData('/channel').then(function(data) {
-            //console.log("searching for channel in ", data);
             for (var channel in data) {
                 if(data[channel].between == channelId) {
-                    //g_user.onChannel = channel;
-                    //console.log("channel exist", channel);
                     return channel;
                 }
             }
@@ -62,7 +57,6 @@ class ClientApi {
      * @return channel reference 
      */
     static createChatChannel (channelId) {
-        console.log('create chat channel ', channelId);
         var newChannel = firebase.database().ref('/channel').push();
         newChannel.set({
             between: channelId,
@@ -91,18 +85,14 @@ class ClientApi {
         } else {
             ret = clientId.toString() + userId.toString();
         }
-        console.log('STEP 3: create chat channel id = ', ret)
         return ret;
     }
 
     static acquireClient(clientId) {
-        // console.log("ACQUIRE CLIENT", clientId);
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
-        //console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
-                // console.log("promise reject")
                 return Promise.reject();
             }
         })
@@ -110,7 +100,6 @@ class ClientApi {
             
             return this.isChannelExist(channelId);
         }, () => {
-            // console.log("client is busy");
             userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
@@ -118,17 +107,13 @@ class ClientApi {
             var channelReference;
             if (isExist) {
                 channelReference = isExist;
-                console.log("channel exist");
             } else {
                 channelReference = this.createChatChannel(channelId);
-                console.log("create new channel");
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id, userInfoApi.myInfo.name);
             this.updateClientStatus(referenceMapping.getReferenceFromId(userInfoApi.myInfo.id), false, channelReference, '', '');
             userInfoApi.updateMyInfo({chatWith: channelReference});
-            
-            // watchChatBox(channelReference);
         });
     }
 
@@ -144,7 +129,6 @@ class ClientApi {
         return readData('/users/' + referenceMapping.getReferenceFromId(userInfoApi.myInfo.id))
         .then((data)=>{
             userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id, clientName:data.clientName});
-            // console.log('mapping channel', data.chatWith);
     });
     }
 }
