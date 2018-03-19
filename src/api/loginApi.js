@@ -50,13 +50,13 @@ class LoginApi {
     }
 
     static loginByGoogle (user) {
-        console.log('start login by GG');
+        // console.log('start login by GG');
         var provider = new firebase.auth.GoogleAuthProvider();
         return firebase.auth().signInWithPopup(provider).catch(function(error) {
             ////console.log(error);
         }).then(function(result) {
-            console.log(result.user);
-            console.log('log in success');
+            // console.log(result.user);
+            // console.log('log in success');
             return(result.user.uid);
 
             // The signed-in user info.

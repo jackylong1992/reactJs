@@ -18,12 +18,13 @@ import firebase from '../myfilebase'
     static watchData (link, cb) {
         var starCountRef = firebase.database().ref('/users/' + link);
         //console.log("watch data in", link);
-        return starCountRef.on('value', function(snapshot) {
+        starCountRef.on('value', function(snapshot) {
             // //console.log("data change",snapshot.val());
             if (cb) {
                 cb(snapshot.val());
             }
         });
+        return starCountRef;
     }
   }
   

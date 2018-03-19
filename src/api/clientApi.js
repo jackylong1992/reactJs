@@ -28,7 +28,7 @@ class ClientApi {
      */
     static isClientAvailable (clientRef) {
         return readData('/users/' + clientRef).then(function(data) {
-            console.log('client availble', data.isFree);
+            // console.log('client availble', data.isFree);
             if (data.loginStatus && data.isFree) {
                 return true;
             } else {
@@ -85,23 +85,23 @@ class ClientApi {
 
     static createChannelListId (userId, clientId) {
         var ret;
-        if (userId < clientId) {
+        if (userId.toString() < clientId.toString()) {
             ret = userId.toString() + clientId.toString();
         } else {
             ret = clientId.toString() + userId.toString();
         }
-        // //console.log('channel id = ', ret)
+        console.log('STEP 3: create chat channel id = ', ret)
         return ret;
     }
 
     static acquireClient(clientId) {
-        console.log("ACQUIRE CLIENT", clientId);
+        // console.log("ACQUIRE CLIENT", clientId);
         var channelId = this.createChannelListId(clientId, userInfoApi.myInfo.id);
         //console.log("acquire client reference" , referenceMapping.getReferenceFromId(clientId));
         return this.isClientAvailable(referenceMapping.getReferenceFromId(clientId))
         .then((isAvailable)=> {
             if (!isAvailable) {
-                console.log("promise reject")
+                // console.log("promise reject")
                 return Promise.reject();
             }
         })
@@ -109,7 +109,7 @@ class ClientApi {
             
             return this.isChannelExist(channelId);
         }, () => {
-            console.log("client is busy");
+            // console.log("client is busy");
             userInfoApi.updateMyInfo({clientId:''});
             browserHistory.push('/userList');
         })
@@ -142,7 +142,7 @@ class ClientApi {
         return readData('/users/' + referenceMapping.getReferenceFromId(userInfoApi.myInfo.id))
         .then((data)=>{
             userInfoApi.updateMyInfo({chatWith: data.chatWith, clientId: data.clientId, id:data.id});
-            console.log('mapping channel', data.chatWith);
+            // console.log('mapping channel', data.chatWith);
     });
     }
 }
