@@ -61,7 +61,7 @@ class ChatBox extends React.Component {
     render() {
         return (
             <div id="messageSpace">
-                {<ChatBar name={"Person you chat with"} onClick={this.changeToUserList.bind(this)}/>}
+                {<ChatBar name={userInfoApi.myInfo.clientName} onClick={this.changeToUserList.bind(this)}/>}
                 <div id='chatContent'>
                 {this.props.state.map((message, index) =>
                 <ChatMessage key={index} name={message.text} isSent={message.from == userInfoApi.myInfo.id}/>

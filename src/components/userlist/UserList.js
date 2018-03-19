@@ -31,9 +31,9 @@ class UserList extends React.Component {
         //console.log('userList receive new props', newProps);
     }
 
-    changeToChatBox (clientId) {
+    changeToChatBox (clientId, clientName) {
         console.log("CHANGE TO CHAT BOX", clientId);
-        userInfoApi.updateMyInfo({clientId: clientId, isActive : true});
+        userInfoApi.updateMyInfo({clientId: clientId, isActive : true, clientName:clientName});
         browserHistory.push({pathname : '/chatbox', state : this.props.state.chatBox});
         // //console.log("change link", this.props);
     }
@@ -50,7 +50,7 @@ class UserList extends React.Component {
                     if (!user.isFree) {
                         return <UserCard key={user.id} name={user.name} isBusy={true} onClick={this.cannotClickMe}/>;
                     } else {
-                        return <UserCard key={user.id} name={user.name} isBusy={false} onClick={this.changeToChatBox.bind(this, user.id)}/>;
+                        return <UserCard key={user.id} name={user.name} isBusy={false} onClick={this.changeToChatBox.bind(this, user.id, user.name)}/>;
                     }
                 }
                 )}
