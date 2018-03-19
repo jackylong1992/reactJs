@@ -17,10 +17,10 @@ class UserList extends React.Component {
         // //console.log('Component WILL MOUNT!');
         // //console.log('update user list');
         this.props.actions.updateUserList();
-        // //console.log('watch user list');
+        // NOTE: because so watchMyInfo cannot get data at first time because there is no user list yet
         this.props.actions.watchUserList();
         // userInfoApi is parse from login phrase
-        this.props.actions.watchMyInfo();
+        // this.props.actions.watchMyInfo();
     }
     componentDidMount() {
         // //console.log('Component DID MOUNT!');

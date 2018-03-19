@@ -10,7 +10,8 @@ class Login extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.changeToNextState = this.changeToNextState.bind(this);
-        this.onlineAccountLogin = this.onlineAccountLogin.bind(this);
+        this.onlineAccountLoginWithGoogle = this.onlineAccountLoginWithGoogle.bind(this);
+        this.onlineAccountLoginWithFacebook = this.onlineAccountLoginWithFacebook.bind(this);
         //console.log("this is log in page first data = ", this.props);
     }
 
@@ -25,10 +26,10 @@ class Login extends React.Component {
         // //console.log('Component WILL RECIEVE PROPS!', newProps);
     }
 
-    changeToNextState (state) {
+    changeToNextState (userId) {
         // browserHistory.push({pathname : state, state: {userId : $('#userId').val()}});
         ////console.log("change link", this.props);
-        var userId = $('#userId').val();
+        // var userId = $('#userId').val();
         loginApi.verifyUser(userId)
         .then((isExist)=> {
             if (isExist) {
@@ -39,16 +40,18 @@ class Login extends React.Component {
         });
     }
 
-    onlineAccountLogin () {
-        var isFirstLogin = true;
-        // authentication process in here, should return promise
-        // check user exist in system
-        // (if new user -> require extra information) change to User info page or change to User List page
-        if (isFirstLogin) {
-            this.changeToNextState('/accountInfo');
-        } else {
-            this.changeToNextState('/userList');
-        }
+    onlineAccountLoginWithGoogle () {
+        loginApi.loginByGoogle()
+        .then((userId)=>{
+            this.changeToNextState(userId);
+        });
+    }
+
+    onlineAccountLoginWithFacebook () {
+        // loginApi.loginByGoogle()
+        // .then((userId)=>{
+            this.changeToNextState('1111');
+        // });
     }
 
     render() {
@@ -56,8 +59,8 @@ class Login extends React.Component {
             <div>
                 <h1 id="loginQuote">Please choose how to LOGIN</h1>
                 <div id="loginBtn">
-                <button onClick={this.onlineAccountLogin} className="btn-primary btn-lg">Login by Google Account</button>
-                <button onClick={this.onlineAccountLogin} className="btn-info btn-lg">Login by Facebook Account</button>
+                <button onClick={this.onlineAccountLoginWithGoogle} className="btn-primary btn-lg">Login by Google Account</button>
+                <button onClick={this.onlineAccountLoginWithFacebook} className="btn-info btn-lg">Login by Facebook Account</button>
                 </div>
                 <br/>
                 <br/>

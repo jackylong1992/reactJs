@@ -65,7 +65,7 @@ class ClientApi {
         var newChannel = firebase.database().ref('/channel').push();
         newChannel.set({
             between: channelId,
-            messageList : "init"
+            messageList : []
         });
         return newChannel.key;
     }
@@ -116,10 +116,10 @@ class ClientApi {
             var channelReference;
             if (isExist) {
                 channelReference = isExist;
-                //console.log("channel exist");
+                console.log("channel exist");
             } else {
                 channelReference = this.createChatChannel(channelId);
-                //console.log("create new channel");
+                console.log("create new channel");
             }
             // CHECK: you can call this one from upper layer to avoide calling to export method
             this.updateClientStatus(referenceMapping.getReferenceFromId(clientId), false, channelReference, userInfoApi.myInfo.id);
