@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import './inputBox.scss';
 // This is template for creating STATEFULL COMPONENT
 class UserTab extends React.Component {
     constructor(props, context) {
