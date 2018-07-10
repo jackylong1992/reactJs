@@ -1,4 +1,5 @@
 export default {
   userList: [],
-  channel: []
+  channel: [],
+  fakeData: {}
 };

@@ -42,7 +42,7 @@ class ChatBox extends React.Component {
     sendMessage () {
         var message = $('#messageSpace input').val();
         this.props.actions.sendChatBox(message);
-        $('#messageSpace input').val("");
+        $('#messageSpace input').val(""); // this is wrong, you should take message value from message component itself, current way is not good because parent is depended on children
         $("#chatContent").scrollTop($("#chatContent")[0].scrollHeight);
     }
 

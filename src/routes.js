@@ -1,16 +1,14 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
-import UserList from './components/userlist/UserList';
-import ChatBox from './components/chatbox/ChatBox';
+// import UserList from './components/userlist/UserList';
+// import ChatBox from './components/chatbox/ChatBox';
 import Login from './components/login/Login';
-import accountInfo from './components/accountinfo/accountInfo';
+// import accountInfo from './components/accountinfo/accountInfo';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Login} />
-    <Route path="userList" component={UserList} />
-    <Route path="chatBox" component={ChatBox} />
-    <Route path="accountInfo" component={accountInfo} />
+    <Route path="login" component={Login} />
   </Route>
 );

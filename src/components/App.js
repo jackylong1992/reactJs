@@ -3,18 +3,25 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as usrListAction from '../actions/userListAction';
+import UserCard from './inputBox/inputBox';
+import * as FakeDataAction from '../actions/fakeDataAction';
 
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
+        console.log("bring up App component");
+        this.cannotClickMe = this.cannotClickMe.bind(this);
     }
-
+  cannotClickMe(param) {
+    console.log("click me", param);
+    this.props.actions.getFakeData();
+  }
   render() {
-      
+    console.log("component render", this.props.state) 
     return (
       <div className="container-fluid main-container">
         
-        {this.props.children}
+          <UserCard isBusy={true} onClick={this.cannotClickMe}/>
       </div>
     );
   }
@@ -27,14 +34,13 @@ class App extends React.Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    // loading: state.ajaxCallsInProgress > 0
-        
-  };
+        state: state.fakeData
+    };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-      actions: bindActionCreators(usrListAction, dispatch)
+      actions: bindActionCreators(FakeDataAction, dispatch) 
     };
 }
 

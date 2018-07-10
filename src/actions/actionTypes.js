@@ -1,5 +1,6 @@
 export const UPDATE_USER_LIST = 'UPDATE_USER_LIST';
 export const BEGIN_FIREBASE = 'BEGIN_FIREBASE';
 export const UPDATE_CHAT_BOX = 'UPDATE_CHAT_BOX';
+export const GET_FAKE_DATA = 'GET_FAKE_DATA';
 
 
